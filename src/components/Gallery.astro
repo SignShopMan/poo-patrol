@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import bigLawn from '../assets/photos/scooping-big-lawn.jpg';
+import barnPond from '../assets/photos/scooping-barn-pond.jpg';
+import farm from '../assets/photos/truck-trailer-farm.jpg';
+import washing from '../assets/photos/hog-barn-washing.jpg';
+import alley from '../assets/photos/hog-barn-alley.jpg';
+import tent from '../assets/photos/event-tent.jpg';
+import snow from '../assets/photos/truck-in-snow.jpg';
+import neighborhood from '../assets/photos/scooping-neighborhood.jpg';
+
+const photos = [
+  { src: bigLawn, alt: 'Crew member walking a large lawn with a scoop and rake', cap: 'Weekly scoop, big yard' },
+  { src: washing, alt: 'Inside a hog barn mid-wash, steam in the air', cap: 'Hog barn, mid-wash' },
+  { src: barnPond, alt: 'Scooping a lawn beside a pond with a red barn behind', cap: 'Out by the pond' },
+  { src: farm, alt: 'The truck and trailer parked at a farm with a dog nearby', cap: 'The rig at a farm' },
+  { src: alley, alt: 'A washed hog barn alley, clean and dry', cap: 'Barn alley, after' },
+  { src: neighborhood, alt: 'Scooping a front yard in a subdivision', cap: 'Subdivision Tuesday' },
+  { src: tent, alt: 'The Poo Patrol tent and table at a community event', cap: 'Come say hi at events' },
+  { src: snow, alt: 'The white Poo Patrol pickup in the snow', cap: 'Snow duty' },
+];
+---
+<section class="band bg-surface-2" id="gallery">
+  <div class="wrap">
+    <SectionHead eyebrow="Out on patrol" title="Real yards, real barns, our actual truck" />
+    <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4 m-0 p-0 list-none">
+      {photos.map((p) => (
+        <li class="flex flex-col gap-2">
+          <Image src={p.src} alt={p.alt} widths={[320, 640]} sizes="(min-width: 1024px) 25vw, 50vw" class="rounded-card w-full aspect-square object-cover" />
+          <span class="text-sm leading-5 text-ink-muted">{p.cap}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

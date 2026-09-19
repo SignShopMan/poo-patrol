@@ -1,0 +1,18 @@
+---
+import SectionHead from './SectionHead.astro';
+import { steps } from '../lib/site';
+---
+<section class="band bg-surface-2" id="how">
+  <div class="wrap">
+    <SectionHead eyebrow="How it works" title="Four steps, none of them yours" />
+    <ol class="grid grid-cols-1 md:grid-cols-4 gap-6 list-none p-0 m-0">
+      {steps.map((s, i) => (
+        <li class="flex flex-col gap-2">
+          <span class="wordmark text-[40px] leading-none" aria-hidden="true">{i + 1}</span>
+          <h3 class="m-0 text-[17px] font-extrabold">{s.title}</h3>
+          <p class="m-0">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

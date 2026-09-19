@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import rig from '../assets/photos/truck-trailer-rig.jpg';
+import { site } from '../lib/site';
+---
+<section class="band" id="about">
+  <div class="wrap grid grid-cols-1 md:grid-cols-[.9fr_1.1fr] gap-8 items-center">
+    <figure class="m-0 flex flex-col gap-2">
+      <Image src={rig} alt="The Poo Patrol pickup hitched to the power-washing trailer with its water tank, parked outside a farmhouse" widths={[480, 800, 1200]} sizes="(min-width: 768px) 45vw, 100vw" class="rounded-card w-full aspect-[4/3] object-cover" />
+      <figcaption class="text-sm leading-5 text-ink-muted">The truck and the wash trailer, ready for a barn.</figcaption>
+    </figure>
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-3">
+        <p class="eyebrow text-patrol m-0">About</p>
+        <h2 class="display text-[clamp(32px,4.5vw,40px)] m-0">Hi, I'm {site.owner}</h2>
+      </div>
+      <p class="m-0">I started Poo Patrol because nobody around here was doing it and every dog owner I knew hated that part of the yard. It's still a small, independent, woman-owned outfit: me, the truck, and people I trust in your backyard.</p>
+      <p class="m-0">Scooping isn't just about the smell. Dog waste that sits in the yard washes into our creeks and rivers, and it's where parasites live. A clean yard is a healthier yard for your dogs and your kids.</p>
+      <p class="m-0"><strong>Reliable. Thorough. Affordable. Every time.</strong></p>
+      <div><a class="btn bg-band text-white border-band" href={site.facebook}>See us on Facebook</a></div>
+    </div>
+  </div>
+</section>

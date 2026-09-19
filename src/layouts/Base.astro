@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import CallBar from '../components/CallBar.astro';
+import { site } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = `${site.name} · Pet Waste Removal & Power Washing · Bellefontaine, OH`,
+  description = `Weekly dog poop scooping, power washing, gutters and leaf cleanup for homes and farms around Bellefontaine, Marysville and Dublin, Ohio. Call or text ${site.phone}.`,
+} = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
+    <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${Astro.site}${base.slice(1)}/apple-touch-icon.png`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@800;900&family=Nunito:wght@400;700;800&display=swap" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: site.legalName,
+      telephone: '+1-937-441-4132',
+      url: canonical.origin + base + '/',
+      address: { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.city, addressRegion: site.address.state, postalCode: site.address.zip, addressCountry: 'US' },
+      areaServed: site.towns.map((t) => ({ '@type': 'City', name: `${t}, OH` })),
+      sameAs: [site.facebook],
+    })} />
+  </head>
+  <body class="pb-[72px] min-[1000px]:pb-0">
+    <Nav />
+    <main id="top">
+      <slot />
+    </main>
+    <Footer />
+    <CallBar />
+  </body>
+</html>

@@ -1,0 +1,18 @@
+---
+import { site } from '../lib/site';
+---
+<section class="band bg-patrol-tint" id="area">
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 items-center">
+    <div class="flex flex-col gap-3 max-w-[60ch]">
+      <p class="eyebrow text-patrol m-0">Service area</p>
+      <h2 class="display text-[clamp(32px,4.5vw,40px)] m-0">If you can see our truck, we come to you</h2>
+      <p class="m-0">Based on US 68 south of Bellefontaine. Not on the list? Ask; we go a bit further for weekly customers.</p>
+    </div>
+    <ul class="flex flex-wrap gap-2 m-0 p-0 list-none">
+      {site.towns.map((t, i) => (
+        <li class={`rounded-full px-4 py-1 font-bold border ${i === 0 ? 'bg-patrol text-white border-patrol' : 'bg-surface border-line'}`}>{t}</li>
+      ))}
+      <li class="rounded-full px-4 py-1 font-bold border bg-surface border-line">and surrounding areas</li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import nozzle from '../assets/brand/nozzle.png';
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { services } from '../lib/site';
+---
+<section class="band" id="services">
+  <div class="wrap">
+    <SectionHead eyebrow="What we do" title="One truck, six ways to make the place look right">
+      <p class="text-ink-muted m-0">Pet waste removal is the bread and butter. The rest is what neighbors kept asking us for once the truck was in the driveway.</p>
+    </SectionHead>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((s) => (
+        <article class="bg-surface border border-line rounded-card p-6 flex flex-col gap-3" id={s.id}>
+          <div class="h-10 text-patrol">
+            {s.icon === 'nozzle'
+              ? <Image src={nozzle} alt="" width={112} height={41} class="w-14 h-auto -mt-1.5 -ml-1" />
+              : <Icon name={s.icon} class="w-10 h-10" />}
+          </div>
+          <h3 class="display text-2xl leading-[1.1] m-0">{s.title}</h3>
+          <p class="m-0">{s.body}</p>
+          <p class="m-0 mt-auto pt-2 text-sm leading-5 text-ink-muted [&_b]:text-patrol [&_b]:font-heading [&_b]:font-black [&_b]:text-xl" set:html={s.price} />
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

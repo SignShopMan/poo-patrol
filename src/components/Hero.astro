@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import mascot from '../assets/brand/mascot.png';
+import Icon from './Icon.astro';
+import { site } from '../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const proof = ['We text you the morning of', 'Haul-away available', 'Zelle, cash, card or check'];
+---
+<section class="pt-12 md:pt-16">
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1.2fr_.8fr] gap-8 md:gap-12 items-center">
+    <div class="flex flex-col gap-6">
+      <p class="eyebrow text-patrol m-0">Bellefontaine, Ohio · Woman-owned · Independent</p>
+      <h1 class="display text-[clamp(44px,7vw,64px)] leading-[.95] m-0">{site.tagline}</h1>
+      <p class="text-xl leading-[30px] font-bold m-0 max-w-[60ch]">Weekly dog poop scooping, power washing, gutters and leaf cleanup for homes and farms from Bellefontaine to Dublin. We take care of the messy stuff so you don't have to.</p>
+      <div class="flex flex-wrap gap-3">
+        <a class="btn bg-patrol text-white border-patrol hover:bg-patrol-deep hover:border-patrol-deep" href={`${base}/#quote`}>Get a free quote</a>
+        <a class="btn text-ink border-line hover:border-ink" href={`${base}/#pricing`}>See pricing</a>
+      </div>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 m-0 p-0 list-none">
+        {proof.map((p) => <li class="flex items-center gap-2 font-bold text-[15px]"><Icon name="check" class="w-5 h-5 text-lawn" />{p}</li>)}
+      </ul>
+    </div>
+    <Image src={mascot} alt="The Poo Patrol mascot: a grinning cartoon poop" width={840} height={814} class="w-[min(72vw,300px)] md:w-[min(100%,420px)] h-auto mx-auto md:mr-0 md:-mb-3" loading="eager" />
+  </div>
+  <div class="bg-patrol text-white mt-8 py-6">
+    <div class="wrap flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+      <div class="flex flex-col gap-1">
+        <span class="subbrand">Call or text</span>
+        <a class="phone text-[clamp(32px,5vw,40px)] leading-none text-inherit no-underline" href={site.phoneHref}>{site.phone}</a>
+      </div>
+      <p class="display text-[clamp(22px,3.5vw,30px)] m-0 normal-case">{site.domain}</p>
+      <p class="text-sm leading-5 m-0 max-w-[34ch]">Serving {site.counties}.</p>
+    </div>
+  </div>
+</section>

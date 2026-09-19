@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Poo Patrol brand tokens — see the brand guide. Light theme only on the public site. */
+@theme {
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f1ef;
+  --color-line: #e3dcda;
+  --color-ink: #231f20;
+  --color-ink-muted: #5e5555;
+  --color-patrol: #b81d25;
+  --color-patrol-deep: #8c161b;
+  --color-patrol-tint: #fbe9ea;
+  --color-gold: #845d32;
+  --color-band: #231f20;
+  --color-lawn: #2f7d32;
+  --color-lawn-tint: #e6f3e5;
+  --color-poo: #773415;
+
+  --font-display: "Lilita One", "Arial Black", Impact, sans-serif;
+  --font-heading: Poppins, "Avenir Next", "Century Gothic", "Segoe UI", sans-serif;
+  --font-body: Nunito, "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --radius-card: 14px;
+  --shadow-lift: 0 -2px 12px #14141426;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-surface text-ink font-body text-[17px] leading-[27px] antialiased; }
+  :focus-visible { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--color-patrol); }
+  h1, h2, h3 { text-wrap: balance; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+@utility wordmark {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--color-patrol);
+  text-shadow: 0.04em 0.04em 0 var(--color-gold);
+}
+
+@utility eyebrow {
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility subbrand {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+@utility phone {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@utility wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (width >= 48rem) { padding-inline: 32px; }
+}
+
+@utility band {
+  padding-block: 48px;
+  @media (width >= 48rem) { padding-block: 64px; }
+}

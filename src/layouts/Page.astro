@@ -1,0 +1,16 @@
+---
+import Base from './Base.astro';
+interface Props { title: string; eyebrow?: string }
+const { title, eyebrow = 'Poo Patrol' } = Astro.props;
+---
+<Base title={`${title} · Poo Patrol`}>
+  <article class="band">
+    <div class="wrap max-w-[72ch]">
+      <p class="eyebrow text-patrol m-0 mb-3">{eyebrow}</p>
+      <h1 class="display text-[clamp(32px,4.5vw,40px)] m-0 mb-8">{title}</h1>
+      <div class="flex flex-col gap-4 [&_h2]:font-extrabold [&_h2]:text-xl [&_h2]:mt-4 [&_h2]:mb-0 [&_p]:m-0 [&_ul]:m-0 [&_ul]:pl-5">
+        <slot />
+      </div>
+    </div>
+  </article>
+</Base>

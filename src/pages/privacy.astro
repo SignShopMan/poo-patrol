@@ -1,0 +1,13 @@
+---
+import Page from '../layouts/Page.astro';
+import { site } from '../lib/site';
+---
+<Page title="Privacy policy">
+  <p><strong>Draft.</strong> Replace with the owner's final wording before launch.</p>
+  <h2>What we collect</h2>
+  <p>Your name, phone number, address and the details you give us about your yard, so we can quote and schedule the work. The quote form on this site sends that information as a text message from your phone to ours; nothing is stored on this website.</p>
+  <h2>How we use it</h2>
+  <p>To text you on service days, send your monthly bill, and answer your questions. We don't sell or share it with anyone else.</p>
+  <h2>Questions</h2>
+  <p>Call or text {site.phone}, or write to {site.legalName}, {site.address.street}, {site.address.city}, {site.address.state} {site.address.zip}.</p>
+</Page>

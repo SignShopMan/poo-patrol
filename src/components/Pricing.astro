@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { plans, extras } from '../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section class="band" id="pricing">
+  <div class="wrap">
+    <SectionHead eyebrow="Pricing" title="Plain-talk pricing">
+      <p class="text-ink-muted m-0">Your price depends on yard size and how many dogs. Call and we'll tell you in about a minute. What's below is everything else, in writing.</p>
+    </SectionHead>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {plans.map((p) => (
+        <article class={`bg-surface rounded-card p-6 flex flex-col gap-3 border ${p.best ? 'border-2 border-patrol' : 'border-line'}`}>
+          {p.best && <span class="self-start bg-patrol-tint text-patrol rounded-full px-3 py-0.5 eyebrow">Most popular</span>}
+          <h3 class="display text-2xl leading-[1.1] m-0">{p.title}</h3>
+          <p class="m-0 text-ink-muted">Priced per yard · <span class="font-heading font-black text-patrol">call for yours</span></p>
+          <ul class="list-none p-0 m-0 flex flex-col gap-2">
+            {p.points.map((pt) => <li class="flex gap-2 items-start"><Icon name="check" class="w-[22px] h-[22px] shrink-0 mt-0.5 text-lawn" />{pt}</li>)}
+          </ul>
+          <a class={`btn mt-2 ${p.best ? 'bg-patrol text-white border-patrol hover:bg-patrol-deep hover:border-patrol-deep' : 'text-ink border-line hover:border-ink'}`} href={`${base}/#quote`}>Get my price</a>
+        </article>
+      ))}
+    </div>
+    <div class="mt-8 border border-line rounded-card p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <dl class="m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
+        {extras.map((e) => (<><dt class="font-heading font-black text-patrol text-xl leading-[27px] whitespace-nowrap">{e.amount}</dt><dd class="m-0">{e.text}</dd></>))}
+      </dl>
+      <div class="flex flex-col gap-2">
+        <p class="m-0"><strong>Weather.</strong> If it's storming on your day, we come within a day or two. Your bill doesn't change.</p>
+        <p class="m-0"><strong>Billing.</strong> End of the month. Zelle, cash, credit or debit, or a check. If a bill's still open at month end we pause service until it's settled.</p>
+        <p class="m-0"><strong>Gates and dogs.</strong> Leave the gate unlocked on your day, and tell us about any dog who'd rather we didn't come in.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { reviews } from '../lib/site';
+---
+<section class="band" id="reviews">
+  <div class="wrap">
+    <SectionHead eyebrow="Reviews" title="What the neighbors say">
+      <p class="text-ink-muted m-0">Cards below are placeholders. The real reviews come from the Facebook page, in the customer's own words, with their okay.</p>
+    </SectionHead>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {reviews.map((r) => (
+        <figure class="bg-surface border border-line rounded-card p-6 m-0 flex flex-col gap-3">
+          {r.sample && <span class="self-start text-xs font-extrabold tracking-[.06em] uppercase text-ink-muted border border-dashed border-line rounded-md px-2 py-0.5">Sample · replace</span>}
+          <div class="flex gap-0.5 text-patrol" aria-label="5 out of 5 stars">{[0,1,2,3,4].map(() => <Icon name="star" class="w-[18px] h-[18px]" />)}</div>
+          <blockquote class="m-0">"{r.quote}"</blockquote>
+          <figcaption class="text-sm leading-5 text-ink-muted font-extrabold">{r.who}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

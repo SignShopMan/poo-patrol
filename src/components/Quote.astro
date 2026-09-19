@@ -1,0 +1,50 @@
+---
+import Icon from './Icon.astro';
+import { site, services } from '../lib/site';
+---
+<section class="band bg-surface-2" id="quote">
+  <div class="wrap grid grid-cols-1 lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-3">
+        <p class="eyebrow text-patrol m-0">Free quote</p>
+        <h2 class="display text-[clamp(32px,4.5vw,40px)] m-0">Tell us about the yard</h2>
+        <p class="m-0">Three ways, all free. Most people get a price the same day.</p>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-3 items-start"><Icon name="phone" class="w-6 h-6 shrink-0 text-patrol mt-0.5" /><p class="m-0"><strong>Call or text</strong><br /><a class="phone text-[22px] text-inherit no-underline" href={site.phoneHref}>{site.phone}</a></p></div>
+        <div class="flex gap-3 items-start"><Icon name="mail" class="w-6 h-6 shrink-0 text-patrol mt-0.5" /><p class="m-0"><strong>Message us on Facebook</strong><br /><a href={site.facebook}>Poo Patrol Pet Waste Removal</a></p></div>
+        <div class="flex gap-3 items-start"><Icon name="form" class="w-6 h-6 shrink-0 text-patrol mt-0.5" /><p class="m-0"><strong>Use the form</strong><br />It opens a text to us with your answers filled in.</p></div>
+      </div>
+    </div>
+    <form id="quote-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-surface border border-line rounded-card p-6" method="get" action={site.smsHref}>
+      <div class="flex flex-col gap-1"><label for="q-name" class="font-extrabold text-sm">Your name</label><input id="q-name" name="name" autocomplete="name" required class="border border-line rounded-md px-3 py-2 min-h-11 w-full bg-surface" /></div>
+      <div class="flex flex-col gap-1"><label for="q-phone" class="font-extrabold text-sm">Cell number</label><input id="q-phone" name="phone" type="tel" autocomplete="tel" required class="border border-line rounded-md px-3 py-2 min-h-11 w-full bg-surface" /><span class="text-sm text-ink-muted">We text, we don't spam.</span></div>
+      <div class="flex flex-col gap-1"><label for="q-town" class="font-extrabold text-sm">Town</label><input id="q-town" name="town" required class="border border-line rounded-md px-3 py-2 min-h-11 w-full bg-surface" /></div>
+      <div class="flex flex-col gap-1"><label for="q-dogs" class="font-extrabold text-sm">How many dogs</label><select id="q-dogs" name="dogs" class="border border-line rounded-md px-3 py-2 min-h-11 w-full bg-surface"><option>1</option><option>2</option><option>3</option><option>4 or more</option><option>No dogs, just power washing</option></select></div>
+      <div class="flex flex-col gap-1 sm:col-span-2"><label for="q-service" class="font-extrabold text-sm">What do you need</label><select id="q-service" name="service" class="border border-line rounded-md px-3 py-2 min-h-11 w-full bg-surface"><option>Weekly poop scooping</option><option>Every-other-week scooping</option><option>One-time cleanup</option>{services.slice(1).map((s) => <option>{s.title}</option>)}</select></div>
+      <div class="flex flex-col gap-1 sm:col-span-2"><label for="q-notes" class="font-extrabold text-sm">Anything we should know</label><textarea id="q-notes" name="notes" rows="3" placeholder="Big yard, two labs, gate on the left side of the house." class="border border-line rounded-md px-3 py-2 w-full bg-surface resize-y"></textarea></div>
+      <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
+        <button class="btn bg-patrol text-white border-patrol hover:bg-patrol-deep hover:border-patrol-deep" type="submit">Text us this quote request</button>
+        <span class="text-sm text-ink-muted">On a computer? Call or use Facebook instead.</span>
+      </div>
+    </form>
+  </div>
+</section>
+<script>
+  // Static site, no backend: compose an SMS to the shop with the form's answers.
+  // Swap `action` for a Formspree/Netlify endpoint later if a proper inbox is wanted.
+  const form = document.getElementById('quote-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const lines = [
+      `Quote request from ${d.get('name')} (${d.get('phone')})`,
+      `Town: ${d.get('town')}`,
+      `Dogs: ${d.get('dogs')}`,
+      `Need: ${d.get('service')}`,
+    ];
+    const notes = String(d.get('notes') ?? '').trim();
+    if (notes) lines.push(`Notes: ${notes}`);
+    window.location.href = `${form.action}?&body=${encodeURIComponent(lines.join('\n'))}`;
+  });
+</script>
