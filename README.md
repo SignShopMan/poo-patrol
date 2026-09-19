@@ -3,7 +3,7 @@
 Marketing site for Poo Patrol Pet Waste Removal LLC (Bellefontaine, OH). Astro + Tailwind v4, deployed to GitHub Pages on every push to `main`.
 
 - Brand guide (tokens, mascot, logo files, voice): https://claude.ai/artifact/6Yp1k2NgeZymPmZhnhFbbh
-- Original artwork and photos: `brand/` (sign-shop vector PDFs in `brand/source/`, full-size photos in `brand/photos/`)
+- Original artwork and photos: `brand/` — the mascot's original EPS from the artist plus a PDF and PNG masters in `brand/mascot/`, sign-shop vector PDFs in `brand/source/`, full-size photos in `brand/photos/`
 
 ## Develop
 
